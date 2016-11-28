@@ -1,0 +1,288 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Task</title>
+    <style media="screen">
+      table{
+        margin: auto;
+        border-collapse:collapse;
+        border: 1px solid rgba(7, 74, 105, 0.19);
+      }
+      th{
+        background-color: black;
+        color: white;
+        border: 1px solid white;
+      }
+      td{
+        border: 1px solid rgba(7, 74, 105, 0.19);
+      }
+      th,td{
+        width: 100px;
+        text-align: center;
+      }
+      .constant{
+        position: fixed;
+        top: 0px;
+      }
+      .fixed{
+        position: fixed;
+        top: 0px;
+        margin: auto;
+      }
+    </style>
+  </head>
+<body>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>姓名</th>
+        <th>语文</th>
+        <th>数学</th>
+        <th>英语</th>
+        <th>总分</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>小明</td>
+        <td>80</td>
+        <td>90</td>
+        <td>70</td>
+        <td>240</td>
+      </tr>
+      <tr>
+        <td>小红</td>
+        <td>90</td>
+        <td>60</td>
+        <td>90</td>
+        <td>240</td>
+      </tr>
+      <tr>
+        <td>小亮</td>
+        <td>60</td>
+        <td>100</td>
+        <td>70</td>
+        <td>230</td>
+      </tr>
+      <tr>
+        <td>小黄</td>
+        <td>70</td>
+        <td>80</td>
+        <td>60</td>
+        <td>210</td>
+      </tr>
+      <tr>
+        <td>小白</td>
+        <td>60</td>
+        <td>60</td>
+        <td>100</td>
+        <td>220</td>
+      </tr>
+      <tr>
+        <td>小天</td>
+        <td>90</td>
+        <td>60</td>
+        <td>100</td>
+        <td>250</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <p>
+    这是空白
+  </p>
+  <script type="text/javascript">
+    function exchangeAarry(name,index1,index2) {
+        var b = name[index1];
+        name[index1] = name[index2];
+        name[index2] = b;
+    }
+    var tittle = document.getElementsByTagName('th');
+    var container = document.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    var tl = tittle.length;
+    var cl = container.length;
+    var detail = new Array(tl);
+    var newContainer = new Array(cl);
+    var flag =1;
+    for (let i = 0; i < tl; i++) {
+      detail[i] = new Array(cl);
+      for (let k = 0; k < cl; k++) {
+        detail[i][k] = document.getElementsByTagName('tbody')[0].
+                       getElementsByTagName('tr')[k].getElementsByTagName('td')[i].innerHTML;
+      }
+    }
+    for (let i = 0; i < tl; i++) {
+      tittle[i].onclick = function () {
+        // 升序排列
+        if (flag) {
+          // 去除节点
+          for (let k = 0; k < cl; k++) {
+            newContainer[k]=document.getElementsByTagName('tbody')[0].removeChild(container[0]);
+          }
+        //  排序主体
+          for (let m = 0; m < cl; m++) {
+            for (let n = m+1; n < cl; n++) {
+              //字符串比较
+              if (!(detail[i][0]-0)) {
+                if (detail[i][m] > detail[i][n]) {
+                  for (let k = 0; k < tl; k++) {
+                    exchangeAarry(detail[k],m,n);
+                  }
+                  exchangeAarry(newContainer,m,n);
+                }
+              }
+              // 数字比较
+              else if (parseFloat(detail[i][m]) > parseFloat(detail[i][n])) {
+                for (let k = 0; k < tl; k++) {
+                  exchangeAarry(detail[k],m,n);
+                }
+                exchangeAarry(newContainer,m,n);
+              }
+            }
+          }
+          // 添加节点
+          for (let i = 0; i < cl; i++) {
+            document.getElementsByTagName('tbody')[0].appendChild(newContainer[i]);
+          }
+          flag = 0;
+        }
+
+        // 降序排列
+        else {
+          for (let k = 0; k < cl; k++) {
+            newContainer[k]=document.getElementsByTagName('tbody')[0].removeChild(container[0]);
+          }
+
+          for (let m = 0; m < cl; m++) {
+            for (let n = m+1; n < cl; n++) {
+              if (!(detail[i][0]-0)) {
+                if (detail[i][m] < detail[i][n]) {
+                  for (let k = 0; k < tl; k++) {
+                    exchangeAarry(detail[k],m,n);
+                  }
+                  exchangeAarry(newContainer,m,n);
+                }
+              }
+              else if (parseFloat(detail[i][m]) < parseFloat(detail[i][n])) {
+                for (let k = 0; k < tl; k++) {
+                  exchangeAarry(detail[k],m,n);
+                }
+                exchangeAarry(newContainer,m,n);
+              }
+            }
+          }
+
+          for (let i = 0; i < cl; i++) {
+            document.getElementsByTagName('tbody')[0].appendChild(newContainer[i]);
+          }
+
+          flag = 1;
+        }
+      }
+    }
+    // 冻结列表头
+    var table = document.getElementsByTagName('table')[0];
+    var thead = document.getElementsByTagName('thead')[0];
+    var offsetTop = table.offsetTop;
+    var tableHeight = table.offsetHeight;
+    var clone =  thead.cloneNode(true);
+    window.onscroll = function () {
+      var scrollTop = document.body.scrollTop;
+      if (scrollTop < (offsetTop+tableHeight) && scrollTop > offsetTop ) {
+        if (typeof document.getElementsByTagName('thead')[1] !='object') {
+          table.insertBefore(clone,thead);
+          thead.className='fixed';
+        }
+      }
+      else if (typeof document.getElementsByTagName('thead')[1] =='object') {
+        table.removeChild(clone);
+        thead.className='';
+      }
+    }
+  </script>
+</body>
+</html>
